@@ -47,8 +47,15 @@ void drawGrid() {
   noFill();
   strokeWeight(2);
   stroke(color(255, 255, 255));
-  ellipse((x + (N/2)) * 10, (y + (N/2)) * 10, max_distance* 10*2, max_distance* 10*2);
-  ellipse((x + (N/2)) * 10, (y + (N/2)) * 10, int(sensor_distance)* 10*2, int(sensor_distance)* 10*2);
+  
+  float _from_theta = theta - (sensor_fov/2) ;
+  float _to_theta =  theta + (sensor_fov/2) ;
+  
+  //ellipse((x + (N/2)) * 10, (y + (N/2)) * 10, max_distance* 10*2, max_distance* 10*2);
+  arc((x + (N/2)) * 10, (y + (N/2)) * 10, max_distance* 10*2, max_distance* 10*2, _from_theta, _to_theta);
+  
+  //ellipse((x + (N/2)) * 10, (y + (N/2)) * 10, int(sensor_distance)* 10*2, int(sensor_distance)* 10*2);
+  arc((x + (N/2)) * 10, (y + (N/2)) * 10, int(sensor_distance)* 10*2, int(sensor_distance)* 10*2, _from_theta, _to_theta);
 
   float __x = int(max_distance * cos(theta-sensor_fov/2));
   float __y = int(max_distance * sin(theta-sensor_fov/2));
@@ -103,5 +110,5 @@ void draw() {
 
   drawGrid();
 
-  delay(100);
+  delay(150);
 }
